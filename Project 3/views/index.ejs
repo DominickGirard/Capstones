@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+<html>
+<%- include("partials/header.ejs"); %>
+
+<body>
+  <div class="transparent black-background"></div>
+  <div class="container top-element">
+    <h1>Create, and Read, <span class="blog-h1-text">BLOGS</span></h1>
+  </div>
+  <div class="hr">
+    <hr />
+  </div>
+  <div class="transparent create-post">
+    <div class="create-post-grid">
+      <h2>Compose Post</h2>
+      <form action="/generatePost" method="post">
+        <div>
+          <div>
+            <h3>Title</h3>
+            <textarea maxlength="35" placeholder="Up to 35 Characters" name="postTitle"></textarea>
+          </div>
+          <div>
+            <h3>Write your Masterpeice</h3>
+            <textarea maxlength="240" placeholder="Up to 240 Characters" name="postBody"></textarea>
+          </div>
+          <div class="flex">
+            <button type="submit" class="close-post-btn post-btn">Post</button>
+            <button type="button" class="close-post-btn">Cancel</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="container">
+    <h2>Posts</h2>
+    <% if (locals.blogPosts) { %>
+    <% for (var i = 0; i < locals.blogPosts.length; i++) { %>
+    <div class="blog-post">
+      <div>
+        <h2><%= blogPosts[i]["title"] %></h2>
+        <p><%= blogPosts[i]["body"] %></p>
+        <p class="identifier"><%= blogPosts[i]["identifier"] %></p>
+      </div>
+      <div class="flex">
+        <button class="view-blog-btn">View</button>
+        <button class="view-post-edit">Edit</button>
+      </div>
+    </div>
+    <% } %>
+    <% } else { %>
+    <% console.log("no blogs"); } %>
+  </div>
+
+  <div class="transparent view-post">
+    <div>
+      <h2>No Title</h2>
+      <p>No Content</p>
+
+      <form action="/delete" method="post">
+        <div class="flex">
+          <input class="change-value" type="hidden" name="blogToChange" value="">
+          <button type="button" class="view-post-close">Close</button>
+          <button class="delete-btn" type="submit">Delete</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="transparent edit-blog">
+    <h2><em>Edit the blog</em></h2>
+    <form action="/edit" method="post">
+      <div class="edit-blog-grid">
+        <div>
+          <h3>New Title?</h3>
+          <textarea maxlength="35" name="postTitle" placeholder="Up to 35 Characters"></textarea>
+        </div>
+        <div>
+          <h3>Update your Masterpeice</h3>
+          <textarea maxlength="240" name="postBody" placeholder="Up to 240 Characters"></textarea>
+        </div>
+
+        <div class="flex">
+          <input class="change-value" type="hidden" name="blogToChange" value="">
+          <button class="post-btn" type="submit">Post</button>
+          <button type="button" class="view-post-edit-close">Cancel</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <%- include("partials/footer.ejs"); %>
+</body>
+
+</html>
