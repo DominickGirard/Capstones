@@ -1,0 +1,14 @@
+Grid: structure of website
+Flex: Laying out individual items inside the grid
+
+ create a personal website that showcases your skills, 
+ experiences, and interests
+
+Nav bar
+Hero Section
+Showcase work/projects section (Link to Resume Page)
+About me section
+Contact Me section
+
+(Not using bootstrap)
+Bootstrap: Styling the items so they dont look bad
